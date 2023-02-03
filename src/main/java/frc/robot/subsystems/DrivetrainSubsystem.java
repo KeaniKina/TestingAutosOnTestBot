@@ -43,9 +43,9 @@ public class DrivetrainSubsystem extends SubsystemBase{
             });
     }
 
-    ///////////////
-    //  METHODS  //
-    ///////////////
+    ///////////////////////
+    //      METHODS     //
+    ///////////////////////
 
 
     // RETURNS ENCODER
