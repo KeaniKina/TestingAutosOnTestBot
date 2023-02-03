@@ -8,13 +8,13 @@ public class DriveBackwardsEncoders extends CommandBase {
     // SUBSYSTEM
     private final DrivetrainSubsystem drivetrainSubsystem;
     private int switchCase = 0;
-    private final double enc;
-    private final double wantedEncoder;
+    private double enc;
+    private double wantedEncoder;
 
     // CLASS CONSTRUCTOR
     public DriveBackwardsEncoders(DrivetrainSubsystem drivetrainSubsystem, double wantedEncoder) {
         this.drivetrainSubsystem = drivetrainSubsystem;
-        this.wantedEncoder = -(Math.abs(wantedEncoder));
+        this.wantedEncoder = wantedEncoder;
         enc = drivetrainSubsystem.getEncoder();
         addRequirements(drivetrainSubsystem);
     }
@@ -23,10 +23,12 @@ public class DriveBackwardsEncoders extends CommandBase {
     public void initialize() {
         SmartDashboard.putString("State", "Driving Backwards");
         drivetrainSubsystem.stop();
+        switchCase = 0;
     }
 
     @Override
     public void execute() {
+        SmartDashboard.putNumber("Encoder Count", drivetrainSubsystem.getEncoder());
 
         switch (switchCase) {
 
@@ -44,6 +46,7 @@ public class DriveBackwardsEncoders extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         drivetrainSubsystem.stop();
+        switchCase = 0;
         SmartDashboard.putString("State", "Stopped");
     }
 

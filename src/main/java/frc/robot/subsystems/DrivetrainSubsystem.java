@@ -22,18 +22,15 @@ public class DrivetrainSubsystem extends SubsystemBase{
     private final MotorControllerGroup rightSide = new MotorControllerGroup(rightFront, rightBack);
 
     // ENCODDER
-    private final RelativeEncoder relEnc = leftFront.getEncoder();
-    private double enc;
+    private RelativeEncoder relEnc;
 
     // CONSTRUCTOR
     public DrivetrainSubsystem(){
-        enc = relEnc.getPosition();
+        relEnc = leftFront.getEncoder();
     }
 
     // PERIODIC 
-    public void periodic(){
-        SmartDashboard.putNumber("Drivetrain Encoder", enc);
-    }
+    public void periodic(){}
 
     // AUTO
     public CommandBase testAutoCommand(){
@@ -50,7 +47,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     // RETURNS ENCODER
     public double getEncoder(){
-        return enc;
+        return relEnc.getPosition();
     }
 
     // RESETS ENCODER TO 0

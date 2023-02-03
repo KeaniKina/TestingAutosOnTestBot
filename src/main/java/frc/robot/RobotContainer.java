@@ -22,7 +22,7 @@ public class RobotContainer {
 
   private void configureBindings() {
 
-    new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsEncoders(drivetrainSubsystem, 50));
+    new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsEncoders(drivetrainSubsystem, -50));
     new JoystickButton(xboxController, 4).onTrue(new DriveForwardsEncoders(drivetrainSubsystem, 50));
     
   }
