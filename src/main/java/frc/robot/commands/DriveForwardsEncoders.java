@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class DriveBackwards extends CommandBase {
+public class DriveForwardsEncoders extends CommandBase {
     // SUBSYSTEM
     private final DrivetrainSubsystem drivetrainSubsystem;
     private int switchCase = 0;
@@ -12,16 +12,16 @@ public class DriveBackwards extends CommandBase {
     private final double wantedEncoder;
 
     // CLASS CONSTRUCTOR
-    public DriveBackwards(DrivetrainSubsystem drivetrainSubsystem, double wantedEncoder) {
+    public DriveForwardsEncoders(DrivetrainSubsystem drivetrainSubsystem, double wantedEncoder) {
         this.drivetrainSubsystem = drivetrainSubsystem;
-        this.wantedEncoder = -(Math.abs(wantedEncoder));
+        this.wantedEncoder = Math.abs(wantedEncoder);
         enc = drivetrainSubsystem.getEncoder();
         addRequirements(drivetrainSubsystem);
     }
 
     @Override
     public void initialize() {
-        SmartDashboard.putString("State", "Driving Backwards");
+        SmartDashboard.putString("State", "Driving Forwards");
         drivetrainSubsystem.stop();
     }
 
@@ -31,11 +31,11 @@ public class DriveBackwards extends CommandBase {
         switch (switchCase) {
 
             case 0:
-                if (enc <= wantedEncoder) {
+                if (enc >= wantedEncoder) {
                     switchCase++;
                     break;
                 } else {
-                    drivetrainSubsystem.backwards();
+                    drivetrainSubsystem.forwards();
                 }
         }
 
