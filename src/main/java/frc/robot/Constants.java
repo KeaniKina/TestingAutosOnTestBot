@@ -8,6 +8,8 @@ public final class Constants {
     public static final int leftBackPort = 3;
     public static final int rightFrontPort = 2;
     public static final int rightBackPort = 15;
+
+    public static final double motorSpeed = 0.1;
   }
 
 }
