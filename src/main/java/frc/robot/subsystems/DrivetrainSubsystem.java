@@ -69,8 +69,14 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     // TURN RIGHT
     public void turnRight(){
-        rightSide.set(DrivetrainConstants.motorSpeed);
         leftSide.set(DrivetrainConstants.motorSpeed);
+        rightSide.set(DrivetrainConstants.motorSpeed);
+    }
+
+    // STOP MOTORS
+    public void stop(){
+        leftSide.set(0);
+        rightSide.set(0);
     }
 
 }
