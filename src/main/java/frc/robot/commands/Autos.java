@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
 
 public final class Autos {
-  public static CommandBase exampleAuto() {
+  public static CommandBase testAuto() {
     return Commands.sequence(/*subsystem.exampleMethodCommand(), new ExampleCommand(subsystem)*/);
   }
 
