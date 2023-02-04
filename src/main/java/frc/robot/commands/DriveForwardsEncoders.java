@@ -5,9 +5,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class DriveForwardsEncoders extends CommandBase {
+
     // SUBSYSTEM
     private final DrivetrainSubsystem drivetrainSubsystem;
+
+    // SWITCHCASE
     private int switchCase = 0;
+
+    // ENCODERS
     private double enc;
     private double desiredEnc;
 

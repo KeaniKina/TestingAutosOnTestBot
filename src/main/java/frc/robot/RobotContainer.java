@@ -31,6 +31,6 @@ public class RobotContainer {
 
   // AUTONOMOUS CODE
   public Command getAutonomousCommand() {
-    return Autos.testAuto(drivetrainSubsystem);
+    return Autos.drivetrainTestAuto(drivetrainSubsystem);
   }
 }
