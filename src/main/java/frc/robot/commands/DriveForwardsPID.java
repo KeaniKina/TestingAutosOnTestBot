@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class DriveBackwardsEncoders extends CommandBase {
+public class DriveForwardsPID extends CommandBase {
 
     // SUBSYSTEM
     private final DrivetrainSubsystem drivetrainSubsystem;
@@ -17,7 +17,7 @@ public class DriveBackwardsEncoders extends CommandBase {
     private double desiredEnc;
 
     // CLASS CONSTRUCTOR
-    public DriveBackwardsEncoders(DrivetrainSubsystem drivetrainSubsystem, double desiredEnc) {
+    public DriveForwardsPID(DrivetrainSubsystem drivetrainSubsystem, double desiredEnc) {
         this.drivetrainSubsystem = drivetrainSubsystem;
         enc = drivetrainSubsystem.getRightEncoder();
         this.desiredEnc = desiredEnc;
@@ -26,9 +26,9 @@ public class DriveBackwardsEncoders extends CommandBase {
 
     @Override
     public void initialize() {
-
-        // PRINT TO SMARTDASHBOARD; RESET DRIVETRAIN AND SWITCHCASE
-        SmartDashboard.putString("State", "Driving Backwards");
+        
+        // PRINT TO SMARDASHBOARD; RESET DRIVETRAIN AND SWITCHCASE
+        SmartDashboard.putString("State", "Driving Forwards");
         drivetrainSubsystem.stop();
         switchCase = 0;
     }
@@ -41,11 +41,11 @@ public class DriveBackwardsEncoders extends CommandBase {
         SmartDashboard.putNumber("SwitchCase", switchCase);
         enc = drivetrainSubsystem.getRightEncoder();
 
-        // IF ENCODER REACHES DESIRED VALUE -> STOP; ELSE DRIVE BACKWARDS
         switch (switchCase) {
 
+            // IF ENCODER REACHES DESIRED VALUE -> STOP; ELSE DRIVE FORWARDS
             case 0:
-                if (enc <= desiredEnc) {
+                if (enc >= desiredEnc) {
                     switchCase++;
                     break;
                 } else {

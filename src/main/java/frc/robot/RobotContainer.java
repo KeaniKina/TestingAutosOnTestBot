@@ -1,8 +1,8 @@
 package frc.robot;
 
 import frc.robot.commands.Autos;
-import frc.robot.commands.DriveBackwardsEncoders;
-import frc.robot.commands.DriveForwardsEncoders;
+import frc.robot.commands.DriveBackwardsPID;
+import frc.robot.commands.DriveForwardsPID;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,8 +24,8 @@ public class RobotContainer {
   // CONFIGURING BUTTONS
   private void configureBindings() {
 
-    new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsEncoders(drivetrainSubsystem, -50));
-    new JoystickButton(xboxController, 4).onTrue(new DriveForwardsEncoders(drivetrainSubsystem, 50));
+    new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsPID(drivetrainSubsystem, -50));
+    new JoystickButton(xboxController, 4).onTrue(new DriveForwardsPID(drivetrainSubsystem, 50));
     
   }
 
