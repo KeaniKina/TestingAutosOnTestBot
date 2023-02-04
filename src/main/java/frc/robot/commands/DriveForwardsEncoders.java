@@ -9,12 +9,10 @@ public class DriveForwardsEncoders extends CommandBase {
     private final DrivetrainSubsystem drivetrainSubsystem;
     private int switchCase = 0;
     private double enc;
-    private double wantedEncoder;
 
     // CLASS CONSTRUCTOR
-    public DriveForwardsEncoders(DrivetrainSubsystem drivetrainSubsystem, double wantedEncoder) {
+    public DriveForwardsEncoders(DrivetrainSubsystem drivetrainSubsystem) {
         this.drivetrainSubsystem = drivetrainSubsystem;
-        this.wantedEncoder = wantedEncoder;
         enc = drivetrainSubsystem.getEncoder();
         addRequirements(drivetrainSubsystem);
     }
@@ -29,16 +27,23 @@ public class DriveForwardsEncoders extends CommandBase {
     @Override
     public void execute() {
         SmartDashboard.putNumber("Encoder Count", drivetrainSubsystem.getEncoder());
+        SmartDashboard.putNumber("SwitchCase", switchCase);
 
         switch (switchCase) {
 
             case 0:
-                if (enc >= wantedEncoder) {
+                if (enc >= 50) {
                     switchCase++;
                     break;
                 } else {
                     drivetrainSubsystem.forwards();
                 }
+
+            case 1:
+
+            break;
+
+            default:
         }
 
     }
