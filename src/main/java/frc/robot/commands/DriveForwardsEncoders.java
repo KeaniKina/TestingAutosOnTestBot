@@ -32,7 +32,7 @@ public class DriveForwardsEncoders extends CommandBase {
         switch (switchCase) {
 
             case 0:
-                if (enc >= 50) {
+                if (drivetrainSubsystem.getEncoder() >= 50) {
                     switchCase++;
                     break;
                 } else {
