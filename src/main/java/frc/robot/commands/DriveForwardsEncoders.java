@@ -21,6 +21,8 @@ public class DriveForwardsEncoders extends CommandBase {
 
     @Override
     public void initialize() {
+        
+        // PRINT TO SMARDASHBOARD; RESET DRIVETRAIN AND SWITCHCASE
         SmartDashboard.putString("State", "Driving Forwards");
         drivetrainSubsystem.stop();
         switchCase = 0;
@@ -28,6 +30,8 @@ public class DriveForwardsEncoders extends CommandBase {
 
     @Override
     public void execute() {
+
+        // PRINT TO SMARTDASHBOARD; UPDATE ENCODER VALUE
         SmartDashboard.putNumber("Encoder Count", drivetrainSubsystem.getEncoder());
         SmartDashboard.putNumber("SwitchCase", switchCase);
         enc = drivetrainSubsystem.getEncoder();
@@ -53,6 +57,8 @@ public class DriveForwardsEncoders extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+
+        // RESET DRIVETRAIN AND SWITCHCASE
         drivetrainSubsystem.stop();
         switchCase = 0;
         SmartDashboard.putString("State", "Stopped");

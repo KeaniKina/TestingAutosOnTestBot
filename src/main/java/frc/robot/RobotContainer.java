@@ -15,11 +15,13 @@ public class RobotContainer {
   // CONTROLLER
   private final XboxController xboxController = new XboxController(1);
 
+  // DEFAULT COMMANDS
   public RobotContainer() {
 
     configureBindings();
   }
 
+  // CONFIGURING BUTTONS
   private void configureBindings() {
 
     new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsEncoders(drivetrainSubsystem, -50));
@@ -27,6 +29,7 @@ public class RobotContainer {
     
   }
 
+  // AUTONOMOUS CODE
   public Command getAutonomousCommand() {
     return Autos.testAuto(drivetrainSubsystem);
   }
