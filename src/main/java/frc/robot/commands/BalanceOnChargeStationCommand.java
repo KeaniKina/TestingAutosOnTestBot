@@ -6,7 +6,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class BalanceOnChargeStationCommand extends CommandBase{
+
+    // SUBSYSTEM
     private final DrivetrainSubsystem drive;
+
+    // PID
     private final PIDController pid; 
 
     public BalanceOnChargeStationCommand(DrivetrainSubsystem newDrive) {
@@ -17,13 +21,19 @@ public class BalanceOnChargeStationCommand extends CommandBase{
     }
 
     public double calculateP(){
-        double error = pid.calculate(drive.getPitch(), 0);
-
-        if (error > 1){
-            return 1;
+        double error;
+        if (drive.getPitch() < 2.5 && -2.5 < drive.getPitch()){
+            error = 0;
         }
-        else if (error < -1){
-            return -1;
+        else{
+            error = pid.calculate(drive.getPitch(), 0);
+        } 
+
+        if (error > 0.2){
+            return 0.2;
+        }
+        else if (error < -0.2){
+            return -0.2;
         }
         else{
             return error;
@@ -46,12 +56,27 @@ public class BalanceOnChargeStationCommand extends CommandBase{
         SmartDashboard.putNumber("CurrentPosition", currentPosition);
     }
 
+
+    @Override
+    public void initialize(){
+
+    }
+
     @Override
     public void execute(){
         SmartDashboard.putNumber("P", calculateP());
+
+        drive.drivePID(calculateP());
     }
 
+    @Override
+    public void end(boolean interrupted){
 
-    
+    }
+
+    @Override
+    public boolean isFinished(){
+        return false;
+    }
 
 }

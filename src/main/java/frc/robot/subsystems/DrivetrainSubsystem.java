@@ -51,9 +51,9 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     // PERIODIC 
     public void periodic(){
-        SmartDashboard.putNumber("Speed", leftFront.get());
-        SmartDashboard.putNumber("Left Side Encoder", getLeftEncoder());
-        SmartDashboard.putNumber("Right Side Encoder", getRightEncoder());
+        // SmartDashboard.putNumber("Speed", leftFront.get());
+        // SmartDashboard.putNumber("Left Side Encoder", getLeftEncoder());
+        // SmartDashboard.putNumber("Right Side Encoder", getRightEncoder());
 
         SmartDashboard.putNumber("Yaw", getYaw());
         SmartDashboard.putNumber("Current Angle", navX.getAngle());
@@ -146,8 +146,8 @@ public class DrivetrainSubsystem extends SubsystemBase{
         }
         errorPosition = drivePID.getPositionError();
 
-        SmartDashboard.putNumber("ErrorPosition", errorPosition);
-        SmartDashboard.putNumber("CurrentPosition", currentPosition);
+        // SmartDashboard.putNumber("ErrorPosition", errorPosition);
+        // SmartDashboard.putNumber("CurrentPosition", currentPosition);
     }
 
 
@@ -192,6 +192,14 @@ public class DrivetrainSubsystem extends SubsystemBase{
         leftSide.set(calculateP(setPoint));
         rightSide.set(-calculateP(setPoint));
 
-        SmartDashboard.putNumber("Set Point", setPoint);
+        // SmartDashboard.putNumber("Set Point", setPoint);
+    }
+
+    // TANK DRIVE
+    public void tank(double outputSpeed){
+        leftSide.set(outputSpeed);
+        rightSide.set(-outputSpeed);
+
+        SmartDashboard.putNumber("Output Speed", outputSpeed);
     }
 }

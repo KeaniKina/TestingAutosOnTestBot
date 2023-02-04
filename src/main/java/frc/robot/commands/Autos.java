@@ -14,8 +14,9 @@ public final class Autos {
     SmartDashboard.putString("Robot State", "Auto");
     drivetrainSubsystem.resetEncoders();
 
-    // DRIVE BACKWARDS TO -20; DRIVE FORWARDS TO 20
-    return Commands.sequence();
+    // Balancing on Charge Station
+    // return Commands.sequence();
+    return (new BalanceOnChargeStationCommand(drivetrainSubsystem));
   }
 
   /*public static CommandBase armTestAuto(ArmSubsystem armSubsystem) {
