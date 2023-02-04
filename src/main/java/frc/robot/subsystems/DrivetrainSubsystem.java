@@ -96,6 +96,8 @@ public class DrivetrainSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("CurrentPosition", currentPosition);
     }
 
+
+
     // DRIVE FORWARDS
     public void forwards(){
         leftSide.set(DrivetrainConstants.motorSpeed);
@@ -125,6 +127,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
         leftSide.set(0);
         rightSide.set(0);
     }
+
 
     // PID DRIVE
     public void drivePID(double setPoint){
