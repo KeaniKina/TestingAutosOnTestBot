@@ -29,7 +29,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
 
     // PID VARIABLES 
-    private final PIDController drivePID = new PIDController(0.0074, 0.00065, 0.001);
+    private final PIDController drivePID = new PIDController(0.007, 0.0008, 0.001);
     private double errorPosition = 0;
 
 
@@ -38,13 +38,13 @@ public class DrivetrainSubsystem extends SubsystemBase{
     public DrivetrainSubsystem(){
         leftRelEnc = leftFront.getEncoder();
         rightRelEnc = rightFront.getEncoder();
-        drivePID.setTolerance(5);
+        drivePID.setTolerance(8);
     }
 
     // PERIODIC 
     public void periodic(){
         SmartDashboard.putNumber("Speed", leftFront.get());
-        SmartDashboard.putNumber("Subsystem Encoder", getLeftEncoder());
+        SmartDashboard.putNumber("Left Side Encoder", getLeftEncoder());
         SmartDashboard.putNumber("Right Side Encoder", getRightEncoder());
     }
 
@@ -72,7 +72,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     // RETURNS RIGHT SIDE ENCODER
     public double getRightEncoder(){
-        return rightRelEnc.getPosition();
+        return -rightRelEnc.getPosition();
     }
 
     // RESETS ENCODER TO 0
@@ -83,7 +83,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
     // CALCULATING P
     public double calculateP(Double setPoint){
-        double error = drivePID.calculate(getLeftEncoder(), setPoint);
+        double error = drivePID.calculate(getRightEncoder(), setPoint);
 
         if (error > 1){
             return 1;
