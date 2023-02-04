@@ -43,7 +43,7 @@ public class DriveBackwardsEncoders extends CommandBase {
                     switchCase++;
                     break;
                 } else {
-                    drivetrainSubsystem.backwards();
+                    drivetrainSubsystem.drivePID(desiredEnc);
                 }
 
             case 1:
