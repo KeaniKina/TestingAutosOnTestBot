@@ -36,6 +36,7 @@ public class DriveBackwardsEncoders extends CommandBase {
         SmartDashboard.putNumber("SwitchCase", switchCase);
         enc = drivetrainSubsystem.getEncoder();
 
+        // IF ENCODER REACHES DESIRED VALUE -> STOP; ELSE DRIVE BACKWARDS
         switch (switchCase) {
 
             case 0:

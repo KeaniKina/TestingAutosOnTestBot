@@ -38,6 +38,7 @@ public class DriveForwardsEncoders extends CommandBase {
 
         switch (switchCase) {
 
+            // IF ENCODER REACHES DESIRED VALUE -> STOP; ELSE DRIVE FORWARDS
             case 0:
                 if (enc >= desiredEnc) {
                     switchCase++;
