@@ -10,7 +10,7 @@ public final class Autos {
   public static CommandBase testAuto(DrivetrainSubsystem drivetrainSubsystem) {
     SmartDashboard.putString("Robot State", "Auto");
     drivetrainSubsystem.resetEncoder();
-    return Commands.sequence(new DriveBackwardsEncoders(drivetrainSubsystem), new DriveForwardsEncoders(drivetrainSubsystem) /*subsystem.exampleMethodCommand(), new ExampleCommand(subsystem)*/);
+    return Commands.sequence(new DriveBackwardsEncoders(drivetrainSubsystem, -50), new DriveForwardsEncoders(drivetrainSubsystem, 50) /*subsystem.exampleMethodCommand(), new ExampleCommand(subsystem)*/);
   }
 
   private Autos() {
