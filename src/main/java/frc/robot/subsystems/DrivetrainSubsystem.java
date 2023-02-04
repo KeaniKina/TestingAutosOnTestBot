@@ -27,7 +27,6 @@ public class DrivetrainSubsystem extends SubsystemBase{
     private RelativeEncoder leftRelEnc;
     private RelativeEncoder rightRelEnc;
 
-
     // PID VARIABLES 
     private final PIDController drivePID = new PIDController(0.007, 0.0008, 0.001);
     private double errorPosition = 0;
