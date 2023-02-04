@@ -11,10 +11,10 @@ public final class Autos {
 
     // PRINTS STATE TO AUTO; RESET ENCODERS; 
     SmartDashboard.putString("Robot State", "Auto");
-    drivetrainSubsystem.resetEncoder();
+    drivetrainSubsystem.resetEncoders();
 
-    // DRIVE BACKWARDS TO -50; DRIVE FORWARDS TO 50
-    return Commands.sequence(new DriveBackwardsEncoders(drivetrainSubsystem, -20), new DriveForwardsEncoders(drivetrainSubsystem, 20));
+    // DRIVE BACKWARDS TO -20; DRIVE FORWARDS TO 20
+    return Commands.sequence(new DriveBackwardsEncoders(drivetrainSubsystem, -50), new DriveForwardsEncoders(drivetrainSubsystem, 50));
   }
 
   private Autos() {

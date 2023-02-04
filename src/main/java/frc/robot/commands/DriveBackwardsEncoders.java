@@ -14,7 +14,7 @@ public class DriveBackwardsEncoders extends CommandBase {
     // CLASS CONSTRUCTOR
     public DriveBackwardsEncoders(DrivetrainSubsystem drivetrainSubsystem, double desiredEnc) {
         this.drivetrainSubsystem = drivetrainSubsystem;
-        enc = drivetrainSubsystem.getEncoder();
+        enc = drivetrainSubsystem.getLeftEncoder();
         this.desiredEnc = desiredEnc;
         addRequirements(drivetrainSubsystem);
     }
@@ -34,7 +34,7 @@ public class DriveBackwardsEncoders extends CommandBase {
         // PRINT TO SMARTDASHBOARD; UPDATE ENCODER VALUE
         SmartDashboard.putNumber("Encoder Count", enc);
         SmartDashboard.putNumber("SwitchCase", switchCase);
-        enc = drivetrainSubsystem.getEncoder();
+        enc = drivetrainSubsystem.getLeftEncoder();
 
         // IF ENCODER REACHES DESIRED VALUE -> STOP; ELSE DRIVE BACKWARDS
         switch (switchCase) {

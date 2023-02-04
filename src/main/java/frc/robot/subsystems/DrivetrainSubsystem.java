@@ -23,32 +23,36 @@ public class DrivetrainSubsystem extends SubsystemBase{
     private final MotorControllerGroup leftSide = new MotorControllerGroup(leftFront, leftback);
     private final MotorControllerGroup rightSide = new MotorControllerGroup(rightFront, rightBack);
 
-    // ENCODDER
-    private RelativeEncoder relEnc;
+    // ENCODERS
+    private RelativeEncoder leftRelEnc;
+    private RelativeEncoder rightRelEnc;
+
 
     // PID VARIABLES 
-    private final PIDController drivePID = new PIDController(0.0007, 0.006, 0.01);
+    private final PIDController drivePID = new PIDController(0.0074, 0.00065, 0.001);
     private double errorPosition = 0;
 
 
 
     // CONSTRUCTOR
     public DrivetrainSubsystem(){
-        relEnc = leftFront.getEncoder();
+        leftRelEnc = leftFront.getEncoder();
+        rightRelEnc = rightFront.getEncoder();
         drivePID.setTolerance(5);
     }
 
     // PERIODIC 
     public void periodic(){
         SmartDashboard.putNumber("Speed", leftFront.get());
-        SmartDashboard.putNumber("Subsystem Encoder", getEncoder());
+        SmartDashboard.putNumber("Subsystem Encoder", getLeftEncoder());
+        SmartDashboard.putNumber("Right Side Encoder", getRightEncoder());
     }
 
     // AUTO
     public CommandBase testAutoCommand(){
         return runOnce(
             () -> {
-                resetEncoder();
+                resetEncoders();
             });
     }
 
@@ -61,19 +65,25 @@ public class DrivetrainSubsystem extends SubsystemBase{
         return leftFront.get();
     }
 
-    // RETURNS ENCODER
-    public double getEncoder(){
-        return relEnc.getPosition();
+    // RETURNS LEFT SIDE ENCODER
+    public double getLeftEncoder(){
+        return leftRelEnc.getPosition();
+    }
+
+    // RETURNS RIGHT SIDE ENCODER
+    public double getRightEncoder(){
+        return rightRelEnc.getPosition();
     }
 
     // RESETS ENCODER TO 0
-    public void resetEncoder(){
-        relEnc.setPosition(0);
+    public void resetEncoders(){
+        leftRelEnc.setPosition(0);
+        rightRelEnc.setPosition(0);
     }
 
     // CALCULATING P
     public double calculateP(Double setPoint){
-        double error = drivePID.calculate(getEncoder(), setPoint);
+        double error = drivePID.calculate(getLeftEncoder(), setPoint);
 
         if (error > 1){
             return 1;
@@ -89,6 +99,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
     // CONTROLING INTEGRAL
     public void controlI(){
         double currentPosition = drivePID.getPositionError();
+
         if (currentPosition > 0 && errorPosition < 0){
             drivePID.reset();
         }
