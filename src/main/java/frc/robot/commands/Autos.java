@@ -14,7 +14,7 @@ public final class Autos {
     drivetrainSubsystem.resetEncoder();
 
     // DRIVE BACKWARDS TO -50; DRIVE FORWARDS TO 50
-    return Commands.sequence(new DriveBackwardsEncoders(drivetrainSubsystem, -50), new DriveForwardsEncoders(drivetrainSubsystem, 20));
+    return Commands.sequence(new DriveBackwardsEncoders(drivetrainSubsystem, -20), new DriveForwardsEncoders(drivetrainSubsystem, 20));
   }
 
   private Autos() {

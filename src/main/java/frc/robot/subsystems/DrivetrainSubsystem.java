@@ -27,7 +27,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
     private RelativeEncoder relEnc;
 
     // PID VARIABLES 
-    private final PIDController drivePID = new PIDController(0.009, 0.001, 0.001);
+    private final PIDController drivePID = new PIDController(0.009, 0.005, 0.005);
     private double errorPosition = 0;
 
 
@@ -129,7 +129,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
     // PID DRIVE
     public void drivePID(double setPoint){
         leftSide.set(calculateP(setPoint));
-        rightSide.set(calculateP(setPoint));
+        rightSide.set(-calculateP(setPoint));
 
         SmartDashboard.putNumber("Set Point", setPoint);
     }
