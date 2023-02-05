@@ -24,8 +24,8 @@ public class RobotContainer {
   // CONFIGURING BUTTONS
   private void configureBindings() {
 
-    new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsPID(drivetrainSubsystem, -50));
-    new JoystickButton(xboxController, 4).onTrue(new DriveForwardsPID(drivetrainSubsystem, 50));
+    new JoystickButton(xboxController, 1).onTrue(new DriveBackwardsPID(drivetrainSubsystem, -20));
+    new JoystickButton(xboxController, 4).onTrue(new DriveForwardsPID(drivetrainSubsystem, 20));
     
   }
 

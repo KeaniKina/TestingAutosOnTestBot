@@ -15,25 +15,25 @@ public class BalanceOnChargeStationCommand extends CommandBase{
 
     public BalanceOnChargeStationCommand(DrivetrainSubsystem newDrive) {
         drive = newDrive; 
-        pid = new PIDController(0, 0, 0); 
+        pid = new PIDController(0.02, 0, 0); 
 
         addRequirements(drive); 
     }
 
     public double calculateP(){
         double error;
-        if (drive.getPitch() < 2.5 && -2.5 < drive.getPitch()){
+        if (drive.getRoll() < 2.5 && -2.5 < drive.getRoll()){
             error = 0;
         }
         else{
-            error = pid.calculate(drive.getPitch(), 0);
+            error = pid.calculate(drive.getRoll(), 0);
         } 
 
-        if (error > 0.2){
-            return 0.2;
+        if (error > 0.5){
+            return 0.5;
         }
-        else if (error < -0.2){
-            return -0.2;
+        else if (error < -0.5){
+            return -0.5;
         }
         else{
             return error;
@@ -66,7 +66,7 @@ public class BalanceOnChargeStationCommand extends CommandBase{
     public void execute(){
         SmartDashboard.putNumber("P", calculateP());
 
-        drive.drivePID(calculateP());
+        drive.tank(-calculateP());
     }
 
     @Override
